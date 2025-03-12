@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import parking from './parking.svg';
 import './App.css';
+import AddPayment from "./AddPayment";
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
         <img src={parking} className="App-logo" alt="logo" />
         <h1>Smart Parking</h1>
       </header>
+
+      <AddPayment />
+      
     </div>
   );
 }
