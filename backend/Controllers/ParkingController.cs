@@ -22,8 +22,8 @@ namespace parking_app.Controllers
             _context = context;
         }
 
-        [HttpPost("begin")]
-        public async Task<IActionResult> BeginPeriod([FromBody] int carId)
+        [HttpPost("begin/{carId}")]
+        public async Task<IActionResult> BeginPeriod(int carId)
         {
             var car = await _context.Cars.FindAsync(carId);
             if (car == null) return NotFound("Car not found");
@@ -37,8 +37,8 @@ namespace parking_app.Controllers
             return Ok(period);
         }
 
-        [HttpPost("end")]
-        public async Task<IActionResult> EndPeriod([FromBody] int carId)
+        [HttpPost("end/{carId}")]
+        public async Task<IActionResult> EndPeriod(int carId)
         {
             var period = _context.ParkingPeriods.FirstOrDefault(p => p.CarId == carId && p.EndTime == null);
             if (period == null) return NotFound("No active parking period found");
