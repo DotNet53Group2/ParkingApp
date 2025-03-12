@@ -29,7 +29,7 @@ GET {{parking_app_HostAddress}}/api/parking/current/1
 Content-Type: application/json
 
 ### end parking
-POST {{parking_app_HostAddress}}/api/parking/end/3
+POST {{parking_app_HostAddress}}/api/parking/end/1
 Content-Type: application/json
 
 # 2
