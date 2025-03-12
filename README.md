@@ -20,5 +20,16 @@ Add below line in backend.csproj file
 
 ### Add a gitignore file
 ```
- dotnet new gitignore 
+dotnet new gitignore 
+```
+
+## Create the front end project
+```
+npx create-react-app frontend
+```
+
+### To run the frontend app
+```
+cd frontend
+npm start
 ```
