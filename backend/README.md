@@ -8,21 +8,18 @@ dotnet new webapi -n parking-app
 
 ```
 
-### Run project
+### Install docker desktop from [here](https://www.docker.com/products/docker-desktop/) if you don't have docker desktop
+
+
+### Run sql server in docker container using WSL terminal, you might need to add WSL extension in VS Code
 ```
-cd parking-app
-dotnet watch run
+docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=ParkingDb135' -p 1433:1433 --name ParkingDb -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 
-### Run sql server in docker container
-```
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=TodoDb135' -p 1433:1433 --name TodoDb -d mcr.microsoft.com/mssql/server:2022-latest
-
-```
 ### appsettings.json
 ```
 "ConnectionStrings": {
-  "DefaultConnection": "Server=localhost,1433;Database=TodoDb;User Id=sa;Password=TodoDb135;TrustServerCertificate=True;"
+  "DefaultConnection": "Server=localhost,1433;Database=ParkingDb;User Id=sa;Password=ParkingDb135;TrustServerCertificate=True;"
 }
 ```
 
@@ -58,6 +55,12 @@ dotnet new gitignore
 ### Add swagger
 ```
 dotnet add package Swashbuckle.AspNetCore
+```
+
+### Run project
+```
+cd parking-app/backend
+dotnet watch run
 ```
 
 ### swagger endpoint

@@ -8,24 +8,24 @@ POST {{parking_app_HostAddress}}/api/parking/register
 Content-Type: application/json
 
 {
-  "name": "eyp",
+  "name": "def",
   "accountBalance": 0,
   "cars": [
     {
-      "licensePlate": "EYP123",
-      "userId": 6
+      "licensePlate": "DEF123",
+      "userId": 2
     }
   ]
 }
 
 ### begin parking
-POST {{parking_app_HostAddress}}/api/parking/begin/3
+POST {{parking_app_HostAddress}}/api/parking/begin/1
 Content-Type: application/json
 
 # 1
 
 ### current parking
-GET {{parking_app_HostAddress}}/api/parking/current/3
+GET {{parking_app_HostAddress}}/api/parking/current/1
 Content-Type: application/json
 
 ### end parking
@@ -41,5 +41,5 @@ GET {{parking_app_HostAddress}}/api/parking/details/1
 Content-Type: application/json
 
 ### user detailscost
-GET {{parking_app_HostAddress}}/api/parking/cost/1002
+GET {{parking_app_HostAddress}}/api/parking/cost/1
 Content-Type: application/json
