@@ -5,10 +5,11 @@ import "./ParkingApp.css";
 export default function ParkingApp() {
   const [carId, setCarId] = useState("");
   const [parkingData, setParkingData] = useState(null);
+  const apiUrl = "http://localhost:5072/api/parking";
 
   const handleBeginParking = async () => {
     try {
-      await axios.post(`http://localhost:5072/api/parking/begin/${carId}`);
+      await axios.post(`${apiUrl}/begin/${carId}`);
       alert("Parking session started");
     } catch (error) {
       alert("Error starting parking session");
@@ -17,7 +18,7 @@ export default function ParkingApp() {
 
   const handleEndParking = async () => {
     try {
-      const response = await axios.post(`http://localhost:5072/api/parking/end/${carId}`);
+      const response = await axios.post(`${apiUrl}/end/${carId}`);
       console.log(response.data); // Log response to see structure
       alert(`Parking session ended. Cost: ${response.data.cost} SEK`);
     } catch (error) {
@@ -27,7 +28,7 @@ export default function ParkingApp() {
 
   const handleGetCurrentParking = async () => {
     try {
-      const response = await axios.get(`http://localhost:5072/api/parking/current/${carId}`);
+      const response = await axios.get(`${apiUrl}/current/${carId}`);
       setParkingData(response.data);
     } catch (error) {
       alert("No active parking session found");
