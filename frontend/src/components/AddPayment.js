@@ -6,11 +6,28 @@ const AddPayment = () => {
   const [cardHolder, setCardHolder] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvc, setCvc] = useState("");
+  const [savePayment, setSavePayment] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const paymentData = { cardNumber, cardHolder, expiryDate, cvc };
-    console.log("Payment Method Added:", paymentData);
+
+    const paymentData = {
+      cardNumber,
+      expiryDate,
+      cvc,
+      savePayment,
+    };
+
+    if (savePayment) {
+      localStorage.setItem("savedPayment", JSON.stringify(paymentData));
+      alert("Payment method saved for future use!");
+    } else {
+      alert("Payment method will be used for this session only.");
+    }
+    setCardNumber("");
+    setExpiryDate("");
+    setCvc("");
+    setSavePayment(false);
   };
 
   return (
