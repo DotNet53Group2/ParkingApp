@@ -1,7 +1,7 @@
 @parking_app_HostAddress = http://localhost:5072
 
 ### user details
-GET {{parking_app_HostAddress}}/api/parking/details/1004
+GET {{parking_app_HostAddress}}/api/parking/details/2002
 Content-Type: application/json
 
 ### user detailscost
@@ -13,12 +13,12 @@ POST {{parking_app_HostAddress}}/api/parking/register
 Content-Type: application/json
 
 {
-  "name": "xyx",
+  "name": "xys",
   "accountBalance": 0,
   "cars": [
     {
-      "licensePlate": "XYX123",
-      "userId": 1004
+      "licensePlate": "XYS123",
+      "userId": 2002
     }
   ]
 }
