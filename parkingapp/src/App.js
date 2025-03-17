@@ -1,6 +1,3 @@
-// import logo from './logo.svg';
-import parking from './parking.svg';
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddPayment from "./parkingapp/components/AddPayment";
 import PayPage from "./parkingapp/pages/PayPage";
