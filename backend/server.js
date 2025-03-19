@@ -1,10 +1,18 @@
 const express = require("express");
+const { Client } = require("pg");
+const bodyParser = require("body-parser");
+
 const app = express();
 
-app.get("/", (req, res) => {
-    res.send("Server is running!");
+app.use(bodyParser.json());
+
+const client = new Client({
+  connectionString: "postgresql://postgres:yourpassword@localhost:5432/yourdbname" 
 });
 
-app.listen(5000, () => {
-    console.log("Server running on port 5000");
+client.connect();
+
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
