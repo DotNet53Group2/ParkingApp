@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using parking_app.Data;
+using parking_app.Services;
 
 namespace parking_app
 {
@@ -27,7 +28,10 @@ namespace parking_app
             builder.Services.AddDbContext<ParkingDBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddScoped<IParkingService, ParkingService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddControllers();
+
             // Enable CORS
             builder.Services.AddCors(options =>
             {

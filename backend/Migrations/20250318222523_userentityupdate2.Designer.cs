@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using parking_app.Data;
 
@@ -11,9 +12,11 @@ using parking_app.Data;
 namespace parking_app.Migrations
 {
     [DbContext(typeof(ParkingDBContext))]
-    partial class ParkingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250318222523_userentityupdate2")]
+    partial class userentityupdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

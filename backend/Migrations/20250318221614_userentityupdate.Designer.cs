@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using parking_app.Data;
 
@@ -11,9 +12,11 @@ using parking_app.Data;
 namespace parking_app.Migrations
 {
     [DbContext(typeof(ParkingDBContext))]
-    partial class ParkingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250318221614_userentityupdate")]
+    partial class userentityupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +97,13 @@ namespace parking_app.Migrations
 
             modelBuilder.Entity("parking_app.Models.Car", b =>
                 {
-                    b.HasOne("parking_app.Models.User", null)
+                    b.HasOne("parking_app.Models.User", "User")
                         .WithMany("Cars")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("parking_app.Models.ParkingPeriod", b =>

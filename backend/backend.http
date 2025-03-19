@@ -1,40 +1,63 @@
 @parking_app_HostAddress = http://localhost:5072
 
-### user details
-GET {{parking_app_HostAddress}}/api/parking/details/2002
+### all user details
+GET {{parking_app_HostAddress}}/api/auth/users
+dapr-app-id: parkingapp
 Content-Type: application/json
 
-### user detailscost
-GET {{parking_app_HostAddress}}/api/parking/cost/1
+### user details
+GET {{parking_app_HostAddress}}/api/auth/users/3002
+dapr-app-id: parkingapp
+Content-Type: application/json
+
+### user cost
+GET {{parking_app_HostAddress}}/api/auth/cost/3002
+dapr-app-id: parkingapp
 Content-Type: application/json
 
 ### register
-POST {{parking_app_HostAddress}}/api/parking/register
+POST {{parking_app_HostAddress}}/api/auth/register
 Content-Type: application/json
 
 {
-  "name": "xys",
+  "username": "TRY",
+  "passwordHash": "TRY123456",
   "accountBalance": 0,
   "cars": [
     {
-      "licensePlate": "XYS123",
-      "userId": 2002
+      "licensePlate": "TRY123",
+      "userId": 2007
+    }
+  ]
+}
+### login | TODO: need to send only username and passwordHash
+POST {{parking_app_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "TRY",
+  "passwordHash": "TRY123456",
+  "accountBalance": 0,
+  "cars": [
+    {
+      "licensePlate": "TRY123",
+      "userId": 3002
     }
   ]
 }
 
+### current parking
+GET {{parking_app_HostAddress}}/api/parking/current/3002
+Content-Type: application/json
+
 ### begin parking
-POST {{parking_app_HostAddress}}/api/parking/begin/1
+POST {{parking_app_HostAddress}}/api/parking/begin/3002
 Content-Type: application/json
 
 # 1
 
-### current parking
-GET {{parking_app_HostAddress}}/api/parking/current/1002
-Content-Type: application/json
-
 ### end parking
-POST {{parking_app_HostAddress}}/api/parking/end/1
+POST {{parking_app_HostAddress}}/api/parking/end/3002
 Content-Type: application/json
 
 # 2
