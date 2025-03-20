@@ -2,50 +2,41 @@ import { useState, useEffect } from "react";
 import AddPayment from './AddPayment';
 import BookingForm from './BookingForm';
 
-const Pay = ({ bookingDetails }) => {
-  const mockBookingDetails = {
-    parkingSpot: "A123",
-    timeBooked: "2 hours",
-    price: 100,
-  };
-
-  const { parkingSpot, timeBooked, price } = bookingDetails || mockBookingDetails;
-  
+const PayPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [savePayment, setSavePayment] = useState(false);
-  const [paymentData, setPaymentData] = useState(null);
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    console.log("Processing payment for:", { parkingSpot, timeBooked, price, paymentMethod, savePayment });
-    
-    try {
-      const paymentResponse = await processPayment({ parkingSpot, timeBooked, price, paymentMethod, savePayment });
-      const bookingResponse = await createBooking({ parkingSpot, timeBooked, price, paymentMethod, savePayment });
-      
-      console.log('Payment and booking processed:', { paymentResponse, bookingResponse });
-      alert('Payment and booking completed successfully!');
-    } catch (error) {
-      console.error('Error processing payment or creating booking:', error);
-      alert('Failed to process payment or booking');
-    }
-  };
+  const [savedPayment, setSavedPayment] = useState(null);
 
   useEffect(() => {
     const savedPayment = JSON.parse(localStorage.getItem("savedPayment"));
     if (savedPayment) {
-      setPaymentData(savedPayment);
+      setSavedPayment(savedPayment);
     }
   }, []);
+
+  const handlePayment = (e) => {
+    e.preventDefault();
+    console.log("Processing payment for:", { paymentMethod, savePayment });
+    if (savedPayment) {
+      console.log("Using saved payment method:", savedPayment);
+    } else {
+      alert("No saved payment method found.");
+    }
+  };
 
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-bold mb-4">Complete Payment</h2>
 
-      <div className="mb-4">
-        <p>Parking Spot: <strong>{parkingSpot}</strong></p>
-        <p>Duration: <strong>{timeBooked}</strong></p>
-        <p>Total Price: <strong>${price}</strong></p>
-      </div>
+      {savedPayment ? (
+        <div className="mb-4">
+          <h3>Saved Payment Method:</h3>
+          <p>Card Holder: {savedPayment.cardHolder}</p>
+          <p>Card Number: {savedPayment.cardNumber}</p>
+        </div>
+      ) : (
+        <p>No payment method saved.</p>
+      )}
 
       <form onSubmit={handlePayment}>
         <label className="block mb-2">Payment Method:</label>
@@ -66,21 +57,18 @@ const Pay = ({ bookingDetails }) => {
             checked={savePayment}
             onChange={() => setSavePayment(!savePayment)}
           />
-          <label htmlFor="savePayment" className="ml-2">Save payment method for future checkouts</label>
+          <label htmlFor="savePayment" className="ml-2">
+            Save payment method for future checkouts
+          </label>
         </div>
 
-        {!paymentData ? (
-          <AddPayment />
-        ) : (
-          <div className="mb-4">
-            <p>Saved Payment Method: {paymentData.cardHolder}</p>
-          </div>
-        )}
-
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Pay Now</button>
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+          Pay Now
+        </button>
       </form>
     </div>
   );
 };
 
-export default Pay;
+export default PayPage;
+

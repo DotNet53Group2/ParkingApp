@@ -13,9 +13,8 @@ function App() {
         <header className="App-header">
           <img src={parkingLogo} className="App-logo" alt="logo" />
           <h1>Smart Parking</h1>
-
           <Routes>
-            <Route path="/" element={<PayPage />} />
+            <Route path="/" element= "Parking"/>
             <Route path="/pay" element={<Pay />} />
             <Route path="/addpayment" element={<AddPayment />} />
           </Routes>
