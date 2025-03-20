@@ -4,74 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Parking</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-        .container {
-            margin-top: 50px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background-color: blue;
-            color: white;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: darkblue;
-        }
-    </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Smart Parking</h1>
-        <p>Choose an action:</p>
-        <button onclick="showPage('addPayment')">Add Payment</button>
-        <button onclick="showPage('pay')">Pay</button>
-
-        <div id="content"></div>
-    </div>
-
-    <script>
-        function showPage(page) {
-            const content = document.getElementById("content");
-
-            if (page === "addPayment") {
-                content.innerHTML = `
-                    <h2>Add Payment</h2>
-                    <input type="text" placeholder="Card Number"><br><br>
-                    <input type="text" placeholder="MM/YY"><br><br>
-                    <input type="password" placeholder="CVC"><br><br>
-                    <button onclick="alert('Payment Method Added!')">Save Payment</button>
-                `;
-            } 
-            else if (page === "pay") {
-                content.innerHTML = `
-                    <h2>Complete Payment</h2>
-                    <p>Parking Spot: <strong>A123</strong></p>
-                    <p>Duration: <strong>2 hours</strong></p>
-                    <p>Total Price: <strong>$100</strong></p>
-                    <select>
-                        <option value="">Select Payment Method</option>
-                        <option value="card">Credit/Debit Card</option>
-                    </select><br><br>
-                    <button onclick="alert('Payment Successful!')">Pay Now</button>
-                `;
-            }
-        }
-    </script>
-
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

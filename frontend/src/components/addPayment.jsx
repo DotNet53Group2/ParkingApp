@@ -10,6 +10,7 @@ const AddPayment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const paymentData = { cardNumber, cardHolder, expiryDate, cvc, savePayment };
+    console.log("Payment Method Added:", paymentData); };
 
   if (savePayment) {
     localStorage.setItem("savedPayment", JSON.stringify(paymentData));
@@ -19,7 +20,6 @@ const AddPayment = () => {
   }
 
   console.log("Payment Method Added:", paymentData);
-};
 
   return (
     <div className="payment-form">

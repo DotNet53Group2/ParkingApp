@@ -55,4 +55,4 @@ const Pay = ({ bookingDetails }) => {
   );
 };
 
-export default Pay;
+export default Pay; 
