@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const AddPayment = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiry] = useState("");
@@ -7,10 +8,12 @@ const AddPayment = () => {
   const [cardHolder, setCardHolder] = useState("");
   const [savePayment, setSavePayment] = useState(false);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const paymentData = { cardNumber, cardHolder, expiryDate, cvc, savePayment };
     console.log("Payment Method Added:", paymentData); };
+
 
   if (savePayment) {
     localStorage.setItem("savedPayment", JSON.stringify(paymentData));
@@ -55,5 +58,6 @@ const AddPayment = () => {
     </div>
   );
 };
+
 
 export default AddPayment;

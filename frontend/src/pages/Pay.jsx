@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AddPayment from './AddPayment';
+import BookingForm from './BookingForm';
 
-//Placeholder, fake data
 const Pay = ({ bookingDetails }) => {
   const mockBookingDetails = {
     parkingSpot: "A123",
@@ -9,13 +10,32 @@ const Pay = ({ bookingDetails }) => {
   };
 
   const { parkingSpot, timeBooked, price } = bookingDetails || mockBookingDetails;
+  
   const [paymentMethod, setPaymentMethod] = useState("");
   const [savePayment, setSavePayment] = useState(false);
-  const handlePayment = (e) => {
+  const [paymentData, setPaymentData] = useState(null);
+  const handlePayment = async (e) => {
     e.preventDefault();
     console.log("Processing payment for:", { parkingSpot, timeBooked, price, paymentMethod, savePayment });
-
+    
+    try {
+      const paymentResponse = await processPayment({ parkingSpot, timeBooked, price, paymentMethod, savePayment });
+      const bookingResponse = await createBooking({ parkingSpot, timeBooked, price, paymentMethod, savePayment });
+      
+      console.log('Payment and booking processed:', { paymentResponse, bookingResponse });
+      alert('Payment and booking completed successfully!');
+    } catch (error) {
+      console.error('Error processing payment or creating booking:', error);
+      alert('Failed to process payment or booking');
+    }
   };
+
+  useEffect(() => {
+    const savedPayment = JSON.parse(localStorage.getItem("savedPayment"));
+    if (savedPayment) {
+      setPaymentData(savedPayment);
+    }
+  }, []);
 
   return (
     <div className="container mx-auto p-6">
@@ -49,10 +69,18 @@ const Pay = ({ bookingDetails }) => {
           <label htmlFor="savePayment" className="ml-2">Save payment method for future checkouts</label>
         </div>
 
+        {!paymentData ? (
+          <AddPayment />
+        ) : (
+          <div className="mb-4">
+            <p>Saved Payment Method: {paymentData.cardHolder}</p>
+          </div>
+        )}
+
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">Pay Now</button>
       </form>
     </div>
   );
 };
 
-export default Pay; 
+export default Pay;
