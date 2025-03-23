@@ -2,17 +2,14 @@
 
 ### all user details
 GET {{parking_app_HostAddress}}/api/auth/users
-dapr-app-id: parkingapp
 Content-Type: application/json
 
 ### user details
-GET {{parking_app_HostAddress}}/api/auth/users/3002
-dapr-app-id: parkingapp
+GET {{parking_app_HostAddress}}/api/auth/users/3004
 Content-Type: application/json
 
 ### user cost
 GET {{parking_app_HostAddress}}/api/auth/cost/3002
-dapr-app-id: parkingapp
 Content-Type: application/json
 
 ### register
@@ -20,12 +17,12 @@ POST {{parking_app_HostAddress}}/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "TRY",
-  "passwordHash": "TRY123456",
-  "accountBalance": 0,
+  "username": "TRT",
+  "passwordHash": "TRT123456",
+  # "accountBalance": 0,
   "cars": [
     {
-      "licensePlate": "TRY123",
+      "licensePlate": "TRT123",
       "userId": 2007
     }
   ]
@@ -35,23 +32,16 @@ POST {{parking_app_HostAddress}}/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "TRY",
-  "passwordHash": "TRY123456",
-  "accountBalance": 0,
-  "cars": [
-    {
-      "licensePlate": "TRY123",
-      "userId": 3002
-    }
-  ]
+  "username": "LKJ",
+  "password": "LKJ123456"
 }
 
 ### current parking
-GET {{parking_app_HostAddress}}/api/parking/current/3002
+GET {{parking_app_HostAddress}}/api/parking/current/4002
 Content-Type: application/json
 
 ### begin parking
-POST {{parking_app_HostAddress}}/api/parking/begin/3002
+POST {{parking_app_HostAddress}}/api/parking/begin/4002
 Content-Type: application/json
 
 # 1

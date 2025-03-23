@@ -32,9 +32,9 @@ namespace parking_app.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User user)
+        public async Task<IActionResult> Login([FromBody] LoginRequest req)
         {
-            var token = await _authService.LoginUser(user.Username, user.PasswordHash);
+            var token = await _authService.LoginUser(req.Username, req.Password);
             if (token == null) return Unauthorized("Invalid username or password");
             return Ok(new { token });
         }

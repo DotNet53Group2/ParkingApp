@@ -37,7 +37,7 @@ namespace parking_app.Services
             return true;
         }
 
-        public async Task<string?> LoginUser(string username, string password)
+        public async Task<String?> LoginUser(string username, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (user == null || user.PasswordHash != HashPassword(password))
