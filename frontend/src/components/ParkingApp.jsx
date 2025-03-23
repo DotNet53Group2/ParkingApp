@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./ParkingApp.css";
 import parkingLogo from "../assets/parking.svg";
@@ -8,12 +9,13 @@ export default function ParkingApp() {
   const [parkingData, setParkingData] = useState(null);
   const [parkingEndData, setParkingEndData] = useState(null);
   // const [authToken] = useState(localStorage.getItem("token"));
+  const navigate = useNavigate();
 
   const apiUrl = "http://localhost:5072/api/parking";
 
   const handleBeginParking = async () => {
     try {
-      const response = await axios.post(`${apiUrl}/begin/${carId}`);      
+      const response = await axios.post(`${apiUrl}/begin/${carId}`);
       setParkingData(response.data);
       alert("Parking session started");
     } catch (error) {
@@ -33,6 +35,14 @@ export default function ParkingApp() {
     }
   };
 
+  const handleLogout = () => {
+    // if no active parking session found, set parkingData and setParkingEndData to null
+    setParkingData(null);
+    setParkingEndData(null);
+    localStorage.removeItem("token"); // Clear token
+    navigate("/login"); // Redirect to login
+  };
+
   const handleGetCurrentParking = async () => {
     try {
       const response = await axios.get(`${apiUrl}/current/${carId}`);
@@ -41,19 +51,21 @@ export default function ParkingApp() {
       // if no active parking session found, set parkingData and setParkingEndData to null
       setParkingData(null);
       setParkingEndData(null);
-      alert("No active parking session found", error);      
+      alert("No active parking session found", error);
     }
   };
 
   return (
     <>
       <div className="App">
-        <header >
+        <header className="app-header">
           <img src={parkingLogo} className="App-logo" alt="logo" />
           <h1>Smart Parking</h1>
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
         </header>
         <div className="p-4 space-y-4">
-          {/* <h1 className="text-xl font-bold">Parking System</h1> */}
           <input
             type="text"
             placeholder="Enter Car ID"
