@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import AddPayment from "./components/AddPayment";
 import "./PayPage.css";
 
 const PayPage = () => {
