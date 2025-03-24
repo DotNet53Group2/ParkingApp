@@ -1,24 +1,25 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Pay from './pages/Pay';
-import AddPayment from './components/addPayment'
-import parkingLogo from './path-to-logo';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Pay from "./pages/payPage"; 
+import AddPayment from "./components/addPayment"; 
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <img src={parkingLogo} className="App-logo" alt="logo" />
           <h1>Smart Parking</h1>
-          <Routes>
-            <Route path="/" element= "Parking"/>
-            <Route path="/pay" element={<Pay />} />
-            <Route path="/addpayment" element={<AddPayment />} />
-          </Routes>
         </header>
+
+        <nav className="mb-4">
+          <Link to="/add-payment" className="text-blue-500 mr-4">Add Payment</Link>
+          <Link to="/pay" className="text-blue-500">Pay</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<h2>Welcome!</h2>} />
+          <Route path="/pay" element={<Pay />} />
+          <Route path="/add-payment" element={<AddPayment />} />
+        </Routes>
       </div>
     </Router>
   );

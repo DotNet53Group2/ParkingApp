@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import AddPayment from './AddPayment';
+import AddPayment from "./components/AddPayment";
 import "./Pay.css";
-import BookingForm from './BookingForm';
 
 const PayPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
