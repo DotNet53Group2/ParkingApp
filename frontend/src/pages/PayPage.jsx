@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./PayPage.css";
+import "./PayPageStyle.css";
 
 const PayPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
