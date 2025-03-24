@@ -38,4 +38,16 @@
     font-size: 0.9rem;
     margin-left: 10px;
   }
+  @media (max-width: 600px) {
+    .payment-form, .container {
+      width: 90%;
+      padding: 15px;
+    }
   
+    input, button {
+      font-size: 1rem;
+    }
+  
+    h2 {
+      font-size: 1.4rem;
+    }}

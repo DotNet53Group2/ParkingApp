@@ -10,14 +10,15 @@ const AddPayment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const paymentData = { cardNumber, cardHolder, expiryDate, cvc, savePayment };
-    console.log("Payment Method Added:", paymentData); };
-
-  if (savePayment) {
-    localStorage.setItem("savedPayment", JSON.stringify(paymentData));
-    alert("Payment method saved for future use!");
-  } else {
-    alert("Payment method will be used for this session only.");
-  }
+    console.log("Payment Method Added:", paymentData);
+    
+    if (savePayment) {
+      localStorage.setItem("savedPayment", JSON.stringify(paymentData));
+      alert("Payment method saved for future use!");
+    } else {
+      alert("Payment method will be used for this session only.");
+    }
+  };
 
   console.log("Payment Method Added:", paymentData);
 
