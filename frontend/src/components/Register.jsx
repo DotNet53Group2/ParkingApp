@@ -24,11 +24,11 @@ const Register = () => {
           username,
           passwordHash: password,
           cars: [
-            { 
-                licensePlate,
-                userId: 0
-             }
-        ],
+            {
+              licensePlate,
+              userId: 0,
+            },
+          ],
         }),
       });
 
@@ -45,32 +45,34 @@ const Register = () => {
 
   return (
     <div className="auth-container">
-      <h2>Register</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="License Plate"
-          value={licensePlate}
-          onChange={(e) => setLicensePlate(e.target.value)}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
+      <div className="auth-box">
+        <h2>Register</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="License Plate"
+            value={licensePlate}
+            onChange={(e) => setLicensePlate(e.target.value)}
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 };

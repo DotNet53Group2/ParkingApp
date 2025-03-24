@@ -1,43 +1,61 @@
 .auth-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45vmin;
+    background: url("../assets/parking.svg") no-repeat center center;
+    background-size: cover;
+    background-color: #282c34;
   }
   
-  .auth-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .auth-container input {
-    width: 100%;
+  .auth-box {
+    min-height: 240px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .auth-box h2 {
+    margin-bottom: 15px;
+  }
+  
+  .auth-box input {
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 280px;
+    /* width: 100%; */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
   }
   
-  .auth-container button {
+  .auth-box button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   
-  .auth-container button:hover {
-    background-color: #0056b3;
+  .auth-box button:hover {
+    background: #0056b3;
   }
   
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
+  .auth-link {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .auth-link:hover {
+    text-decoration: underline;
   }
   

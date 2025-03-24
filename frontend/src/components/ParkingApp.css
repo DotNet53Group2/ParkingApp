@@ -28,16 +28,7 @@
   
   .space-x-2 > * + * {
     margin-left: 0.5rem; /* 8px spacing between buttons */
-  }
-
-  .app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-  }
+  } 
   
   .logout-btn {
     background-color: #ff4d4d;
