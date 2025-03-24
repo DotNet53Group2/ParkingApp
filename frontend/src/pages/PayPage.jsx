@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import AddPayment from './AddPayment';
-import BookingForm from './BookingForm';
+import "./PayPageStyle.css";
+import { Link } from "react-router-dom";
 
 const PayPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -49,6 +49,10 @@ const PayPage = () => {
           <option value="">Select</option>
           <option value="card">Credit/Debit Card</option>
         </select>
+        
+        <Link to="/add-payment">
+        <button className="bg-green-500 text-white p-2 rounded mt-4">Add New Card</button>
+        </Link>
 
         <div className="flex items-center mb-4">
           <input

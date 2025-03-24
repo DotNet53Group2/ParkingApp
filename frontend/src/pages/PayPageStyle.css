@@ -1,0 +1,57 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .saved-payment {
+    background-color: #d1ffd6;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+    color: #333;
+  }
+  @media (max-width: 600px) {
+    .payment-form, .container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    input, button {
+      font-size: 1rem;
+    }
+  
+    h2 {
+      font-size: 1.4rem;
+    }}
