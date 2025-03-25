@@ -1,78 +1,53 @@
 import { useState, useEffect } from "react";
-import "./PayPageStyle.css";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 const PayPage = () => {
-  const [paymentMethod, setPaymentMethod] = useState("");
-  const [savePayment, setSavePayment] = useState(false);
-  const [savedPayment, setSavedPayment] = useState(null);
+  const [savedPayments, setSavedPayments] = useState([]);
+  const [selectedPayment, setSelectedPayment] = useState(null);
 
   useEffect(() => {
-    const savedPayment = JSON.parse(localStorage.getItem("savedPayment"));
-    if (savedPayment) {
-      setSavedPayment(savedPayment);
-    }
+    axios.get("http://localhost:5000/api/payments")
+      .then(response => setSavedPayments(response.data))
+      .catch(error => console.error("Error fetching payments:", error));
   }, []);
 
-  const handlePayment = (e) => {
-    e.preventDefault();
-    console.log("Processing payment for:", { paymentMethod, savePayment });
-    if (savedPayment) {
-      console.log("Using saved payment method:", savedPayment);
-    } else {
-      alert("No saved payment method found.");
+  const handlePayment = async () => {
+    if (!selectedPayment) {
+      alert("Please select a payment method.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/payments/process", selectedPayment);
+      alert(response.data.message);
+    } catch (error) {
+      alert("Payment failed.");
     }
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Complete Payment</h2>
+    <div className="container">
+      <h2>Complete Payment</h2>
 
-      {savedPayment ? (
-        <div className="mb-4">
-          <h3>Saved Payment Method:</h3>
-          <p>Card Holder: {savedPayment.cardHolder}</p>
-          <p>Card Number: {savedPayment.cardNumber}</p>
-        </div>
+      {savedPayments.length === 0 ? (
+        <p>No saved payment methods found.</p>
       ) : (
-        <p>No payment method saved.</p>
+        <div>
+          <h3>Saved Payment Methods:</h3>
+          {savedPayments.map((payment) => (
+            <div key={payment.id}>
+              <input type="radio" id={payment.id} name="payment" onChange={() => setSelectedPayment(payment)} />
+              <label htmlFor={payment.id}>{payment.cardHolder} - {payment.cardNumber.slice(-4)}</label>
+            </div>
+          ))}
+        </div>
       )}
 
-      <form onSubmit={handlePayment}>
-        <label className="block mb-2">Payment Method:</label>
-        <select
-          className="border p-2 w-full mb-4"
-          value={paymentMethod}
-          onChange={(e) => setPaymentMethod(e.target.value)}
-          required
-        >
-          <option value="">Select</option>
-          <option value="card">Credit/Debit Card</option>
-        </select>
-        
-        <Link to="/add-payment">
-        <button className="bg-green-500 text-white p-2 rounded mt-4">Add New Card</button>
-        </Link>
-
-        <div className="flex items-center mb-4">
-          <input
-            type="checkbox"
-            id="savePayment"
-            checked={savePayment}
-            onChange={() => setSavePayment(!savePayment)}
-          />
-          <label htmlFor="savePayment" className="ml-2">
-            Save payment method for future checkouts
-          </label>
-        </div>
-
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-          Pay Now
-        </button>
-      </form>
+      <button onClick={handlePayment}>Pay Now</button>
     </div>
   );
 };
 
 export default PayPage;
+
 
