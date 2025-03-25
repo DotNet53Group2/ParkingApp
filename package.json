@@ -1,0 +1,26 @@
+{
+  "name": "parkingapp",
+  "version": "1.0.0",
+  "description": "This repository contains a dotnet backend api and react front end application for a sample parking app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThatMiniMi/ParkingApp-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThatMiniMi/ParkingApp-1/issues"
+  },
+  "homepage": "https://github.com/ThatMiniMi/ParkingApp-1#readme",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  }
+}
